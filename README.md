@@ -27,4 +27,4 @@ Repositório do Tarsius
         python3 -m pip install picamera[array]
         ```
 - [Arduino IDE](https://www.arduino.cc/en/Main/software)
-- [Hardwares](https://github.com/Jao8/Tarsius/blob/master/Hardware/hardList.txt)
+- [Hardware](https://github.com/Jao8/Tarsius/blob/master/Hardware/hardList.txt)
