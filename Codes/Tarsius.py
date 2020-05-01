@@ -6,9 +6,8 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 
-'''
 import serial
-'''
+
 '''
 # Descomentar caso seja utilizado uma webcam'
  cap = cv2.VideoCapture(0) 
