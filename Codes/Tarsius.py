@@ -9,11 +9,12 @@ import time
 '''
 import serial
 '''
-
-# cap = cv2.VideoCapture(0) # SE FOR USAR A CAM DO NOTE MUDE PARA 0, SE FOR EXTERNA(WEBCAM) PRA 1
-# cap.set(3,320)
-# cap.set(4, 240)
-
+'''
+# Descomentar caso seja utilizado uma webcam'
+ cap = cv2.VideoCapture(0) 
+ cap.set(3,320) 
+ cap.set(4, 240)
+'''
 r = (232, 174)
 
 camera = PiCamera()
@@ -29,10 +30,10 @@ UcolorLine = np.array([22, 20, 21])  # VALOR BGR MAXIMO DO PRETO
 LcolorBall = np.array([60, 20, 30])  # VALOR BGR MINIMO DO AZUL
 UcolorBall = np.array([232, 193, 204])  # VALOR BGR MAXIMO DO AZUL
 
-'''
+
 ser = serial.Serial("/dev/ttyACM0", 9600)
-tempo = 1
-'''
+#tempo = 1
+
 
 AreaLim = 5000
 qtdCnts = 0
@@ -42,11 +43,11 @@ for frame in camera.capture_continuous(rawCapture, format='bgr', use_video_port=
     #    if tempo <= 100:
 
     frame1 = frame.array
-    '''
-        print("aguardando")
-        resp = ser.readline()
-        print("Resposta eh: ", resp)
-    '''
+
+    print("aguardando")
+    resp = ser.readline()
+    print("Resposta eh: ", resp)
+    
     # frame = rawCam.array
     # ret, frame = cap.read()
     '''
@@ -81,7 +82,7 @@ for frame in camera.capture_continuous(rawCapture, format='bgr', use_video_port=
                 continue
             qtdCnts = qtdCnts + 1
             # print("Qtd eh: ", qtdCnts)
-            if mask.alll() > 0:
+            if mask.all() > 0:
                 (xl, yl, wl, hl) = cv2.boundingRect(c)
                 cv2.rectangle(frame1, (int(xl), int(yl)), (int(xl) + int(wl), int(yl) + int(hl)), (0, 255, 0),
                               2)  # RETANGULO EM VOLTA DA LINHA
@@ -107,11 +108,11 @@ for frame in camera.capture_continuous(rawCapture, format='bgr', use_video_port=
                 #    cv2.rectangle(frame, pt, (pt[0]+w, pt[1]+h), (255,255,0), 2)
                 if qtdCnts == 0:
                     print('Nenhuma linha encontrada')
-                    '''
+                    
                     ser.write(b'404 - Not Found')
                     tempo = tempo + 1
                     time.sleep(0.5)
-                    '''
+                    
                     continue
 
                 if qtdCnts > 0:
@@ -120,36 +121,36 @@ for frame in camera.capture_continuous(rawCapture, format='bgr', use_video_port=
                 if direction > 10:
                     print('Distancia eh: ' + str(abs(direction)) + ' pixels à direita')
 
-                    '''
+                    
                     ser.write(b'Distancia da lnha eh: '+str(abs(direction))+b'à direita')
-                    tempo = tempo + 1
-                    time.sleep(0.5)
-                    '''
+                    #tempo = tempo + 1
+                    time.sleep(0.05)
+                    
 
                     continue
 
                 if direction < -10:
                     print('Distancia eh: ' + str(abs(direction)) + ' pixels à esquerda')
 
-                    '''
+                    
                     ser.write(b'Distancia da lnha eh: '+str(abs(direction))+b'à esquerda')
-                    tempo = tempo + 1
-                    time.sleep(0.5)
-                    '''
+                    #tempo = tempo + 1
+                    time.sleep(0.05)
+                    
 
                     continue
 
                 if (direction >= -15) & (direction <= 15):
                     print("Só vai")
 
-                    '''
+                    
                     ser.write(b'Na linha')
-                    tempo = tempo + 1
-                    time.sleep(0.5)
-                    '''
+                    #tempo = tempo + 1
+                    time.sleep(0.05)
+                    
 
                     continue
-            if mask2.alll() > 0:
+            if mask2.all() > 0:
                 (xb, yb, wb, hb) = cv2.boundingRect(c)
                 cv2.rectangle(frame1, (int(xb), int(yb)), (int(xb) + int(wb), int(yb) + int(hb)), (0, 255, 0),
                               2)  # RETANGULO EM VOLTA DA BOLA
@@ -175,11 +176,11 @@ for frame in camera.capture_continuous(rawCapture, format='bgr', use_video_port=
                 #    cv2.rectangle(frame, pt, (pt[0]+w, pt[1]+h), (255,255,0), 2)
                 if qtdCnts == 0:
                     print('Nenhuma linha encontrada')
-                    '''
+                    
                     ser.write(b'404 - Not Found')
-                    tempo = tempo + 1
-                    time.sleep(0.5)
-                    '''
+                    #tempo = tempo + 1
+                    time.sleep(0.05)
+                    
                     continue
 
                 if qtdCnts > 0:
@@ -188,33 +189,33 @@ for frame in camera.capture_continuous(rawCapture, format='bgr', use_video_port=
                 if direction > 10:
                     print('Distancia eh: ' + str(abs(direction)) + ' pixels à direita')
 
-                    '''
+                    
                     ser.write(b'Distancia da lnha eh: '+str(abs(direction))+b'à direita')
-                    tempo = tempo + 1
-                    time.sleep(0.5)
-                    '''
+                    #tempo = tempo + 1
+                    time.sleep(0.05)
+                    
 
                     continue
 
                 if direction < -10:
                     print('Distancia eh: ' + str(abs(direction)) + ' pixels à esquerda')
 
-                    '''
+                    
                     ser.write(b'Distancia da lnha eh: '+str(abs(direction))+b'à esquerda')
-                    tempo = tempo + 1
-                    time.sleep(0.5)
-                    '''
+                    #tempo = tempo + 1
+                    time.sleep(0.05)
+                    
 
                     continue
 
                 if (direction >= -15) & (direction <= 15):
                     print("Só vai")
 
-                    '''
+                    
                     ser.write(b'Na linha')
-                    tempo = tempo + 1
+                    #tempo = tempo + 1
                     time.sleep(0.5)
-                    '''
+                    
 
                     continue
 
