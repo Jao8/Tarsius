@@ -1,5 +1,5 @@
 # Tarsius
-Repositório do Tarsius, robo seguidor de linha que utiliza visao computacional
+Repositório do Tarsius, um robo seguidor de linha que utiliza visao computacional
 
 **Requerimentos:**
 - [Python3.x](https://www.python.org/downloads/):
