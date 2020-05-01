@@ -1,5 +1,5 @@
 # Tarsius
-Repositório do Tarsius, um robo seguidor de linha que utiliza visao computacional
+Repositório para o codigo do Tarsius, um robo seguidor de linha que utiliza visao computacional
 
 **Requerimentos:**
 - [Python3.x](https://www.python.org/downloads/):
@@ -27,4 +27,4 @@ Repositório do Tarsius, um robo seguidor de linha que utiliza visao computacion
         python3 -m pip install picamera[array]
         ```
 - [Arduino IDE](https://www.arduino.cc/en/Main/software)
-- [Hardware](https://github.com/Jao8/Tarsius/blob/master/Hardware/hardList.txt)
+
